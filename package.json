@@ -1,0 +1,17 @@
+{
+  "name": "log-speedtest-results",
+  "version": "0.1.0",
+  "description": "Log speedtest.net results to disk",
+  "main": "index.js",
+  "scripts": {
+	"start": "node index.js"
+  },
+  "keywords": [
+    "speedtest"
+  ],
+  "author": "Peter Goes <petergoes@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "speedtest-net": "1.2.12"
+  }
+}
