@@ -23,16 +23,14 @@ function logError(error) {
 
 function logData(data) {
 	const logData = getLogData(data);
+	const logString = getLogString(logData);
+
 	fs.stat(logfile, function(err) {
 		if(err && err.code === 'ENOENT') {
 			fs.writeFileSync(logfile, Object.keys(logData));
 		}
 
-		fs.appendFile(logfile, getLogString(logData), err => {
-			if (err) {
-				console.log(err)
-			}
-		});
+		fs.appendFile(logfile, logString);
 	});
 }
 
