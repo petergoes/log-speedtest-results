@@ -4,7 +4,7 @@
   "description": "Log speedtest.net results to disk",
   "main": "index.js",
   "scripts": {
-	"start": "node index.js"
+    "start": "node index.js"
   },
   "keywords": [
     "speedtest"
