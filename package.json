@@ -4,7 +4,7 @@
   "description": "Log speedtest.net results to disk",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node -r esm index.js"
   },
   "keywords": [
     "speedtest"
@@ -12,6 +12,7 @@
   "author": "Peter Goes <petergoes@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "esm": "3.0.84",
     "speedtest-net": "1.2.12"
   }
 }

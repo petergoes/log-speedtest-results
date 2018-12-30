@@ -1,39 +1,15 @@
-const speedTest = require('speedtest-net');
-const fs = require('fs');
-const logfile = './speedlog.csv';
+import testSpeed from './lib/test-speed'
 
-function getLogData(data) {
-	const { download, upload } = data.speeds;
-	const { host, ping, location, country } = data.server;
-	const time = Date.now();
-	const timeString = new Date(time);
-	
-	return { download, upload, host, ping, location, country, time, timeString };
+const minute = 60000
+
+function bootstrap() {
+	triggerTest()
+	setInterval(triggerTest, minute * 5)
 }
 
-function getLogString(logData) {
-	return Object.keys(logData)
-		.reduce((string, key) => string += `${logData[key]},`, '\n')
-		.replace(/,$/, '');
+function triggerTest() {
+  testSpeed()
+  	.catch(console.error)
 }
 
-function logError(error) {
-	console.error(error);
-}
-
-function logData(data) {
-	const logData = getLogData(data);
-	const logString = getLogString(logData);
-
-	fs.stat(logfile, function(err) {
-		if(err && err.code === 'ENOENT') {
-			fs.writeFileSync(logfile, Object.keys(logData));
-		}
-
-		fs.appendFile(logfile, logString);
-	});
-}
-
-speedTest({maxTime: 5000})
-	.on('error', logError)
-	.on('data', logData);
+bootstrap()
